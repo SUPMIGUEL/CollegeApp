@@ -37,15 +37,10 @@ var userSchema = new mongoose.Schema({
   personalweb: { type:String },
   twitter: { type:String },
   phone: { type:String },
-  linkedin: { type:String },
   groups: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Group"
-           }],
-  comments: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Comment"
-            }]
+           }]
 });
 
 userSchema.pre('remove', function(next) {

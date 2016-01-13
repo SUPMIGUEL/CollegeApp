@@ -1,0 +1,44 @@
+<div class="row">
+  <h1 class="text-center">
+    Login
+  </h1> 
+</div>
+<div class="row">
+  <div class="col-md-4">
+                
+  </div>
+  <div class="col-md-4" id="login_box">
+    <div ng-show="errors"> {{errors}} </div>
+    <form name="userForm" ng-submit="login(user)" novalidate class="form-horizontal">
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine || userForm.username.$invalid && userForm.username.$touched,'has-success' : userForm.username.$valid }">
+
+        <label class="col-sm-2 control-label" for="username">Username</label>
+        <div class="col-sm-10">
+        <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username" autofocus>
+        </div>
+        <div class="help-block" ng-messages="userForm.username.$error" ng-if="!userForm.username.$pristine || userForm.username.$touched">
+          <p ng-message="required">Your username is required.</p>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine || userForm.password.$invalid && userForm.password.$touched,'has-success' : userForm.password.$valid }">
+
+        <label class="col-sm-2 control-label" for="password">Password</label>
+        <div class="col-sm-10">
+        <input type="password" name="password" class="form-control" ng-model="user.password" ng-required="true" id="password">
+        </div>
+        <div class="help-block" ng-messages="userForm.password.$error" ng-if="!userForm.password.$pristine || userForm.password.$touched">
+          <p ng-message="required">Your password is required.</p>
+        </div>
+      </div> 
+      
+      <button type="submit" class="btn btn-success btn-lg" ng-disabled="userForm.$invalid">Log In</button>
+
+    </form><br>
+    <h5>Don't have an account? <a href="/signup">Sign Up here</a></h5>
+  </div>
+  <div class="col-md-4">
+                
+  </div>
+</div>

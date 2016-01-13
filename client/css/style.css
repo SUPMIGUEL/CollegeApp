@@ -1,0 +1,35 @@
+img{
+  width: 100px;
+  height: 100px;
+}
+body{
+  background-color: white;
+}
+.group{
+    width: 100%;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #B8B8B8;
+    color: black;
+    margin-bottom: 10px;
+    text-align:center;
+}
+.logos{
+    border-radius: 150px;
+    margin: 10px 10px 10px 10px;
+    height: 90px;
+    width: 90px;
+}
+.name{
+  border-bottom: thin solid gray;
+}
+#login_box{
+  border-radius: 15px;
+  text-align: center;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+}
+h1{
+  margin-bottom: 20px;
+}

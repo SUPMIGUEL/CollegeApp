@@ -1,0 +1,66 @@
+<div class="row">
+  <h1 class="text-center">
+    Group
+  </h1> 
+</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">{{res.group.name}}</div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-3">
+          <img src="{{res.group.imageUrl}}">
+        </div>
+        <div class="col-xs-9">
+          <div>
+            {{res.group.description}}
+          </div>
+          <div class="pull-right" ng-show="currentUser.username === res.group.owner.username">
+            <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-success">Edit</a>
+            <button class="btn btn-danger" ng-click="deleteGroup(group)">Delete</button>
+            <a ng-href="/groups" class="btn btn-primary">Go Back</a>
+          </div>
+          OWNER: {{res.group.owner.username}}
+        </div>
+      </div>
+      <button class="btn btn-success" ng-click="display=!display" ng-show="currentUser">+ Comment</button>
+    </div>
+
+    <div class="panel-body" ng-show="display">
+      <div class="row">
+        <div class="col-xs-12">
+          New Comment
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <form action="javascript:void(0)" ng-submit="createComment(comment)">
+              <label for="content">Comment</label>
+              <input type="text" id="content" name="content" ng-model="comment.content" placeholder="What's the new comment?" class="form-control">
+              <span ng-show="false" ng-value="comment.group_id=res.group._id"></span>
+              <input type="submit" class="btn btn-primary" value="Add!">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12">
+          Comments
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+        <div ng-repeat="comment in res.comments">
+          {{comment.content}}
+          <a ng-href="/users/{{comment.user._id}}">{{comment.user.username}}</a> 
+          <button class="btn btn-danger" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username">Delete</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="collegeApp" ng-cloak>
+<head>
+  <meta charset="UTF-8">
+  <title>College App</title>
+  <base href="/">
+  <style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<nav class="navbar navbar-default" ng-controller="NavController">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">College App</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a class="btn btn-success" href="/groups/new">+ New Group</a>
+      </li>
+
+      <li ng-show="currentUser.username">
+        <a class="btn btn-warning" href="/logout">Logout</a>
+      </li>
+      <li ng-show="currentUser.username">
+        <a class="btn btn-info" href="/users/{{currentUser.id}}">My profile</a>
+      </li>
+      <li ng-show="!currentUser.username">
+        <a class="btn btn-primary" href="/login">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<body>
+  <div class="container-fluid">
+    <div ng-view>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script> <!-- ???¿¿¿ -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/services.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script>
+        UPLOADCARE_LOCALE = "en";
+        UPLOADCARE_TABS = "file facebook instagram";
+        UPLOADCARE_PUBLIC_KEY = "3f5a34a2b189ffef0a92";
+    </script>
+    <script charset="utf-8" src="//ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js"></script>
+</body>
+</html>
+

@@ -35,11 +35,12 @@ apiRouter.get('/', auth.checkToken, function(req,res){
 });
 
 apiRouter.get('/:id', auth.checkToken, function(req,res){
-  db.User.findById(req.decoded_id, function(err,user){
+  console.log("HEEEEEEELP");
+  db.User.findById(req.params.id, function(err,user){
     if (err) res.status(500).send(err);
     if (!user) res.status(401).send(err);
-    var listedItems = {id: user._id, username: user.username};
-    res.status(200).send(listedItems);
+    /*var listedItems = {id: user._id, username: user.username};*/
+    res.status(200).send(user);
   });
 });
 

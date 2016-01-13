@@ -1,0 +1,42 @@
+<div class="row">
+  <h1 class="text-center">
+    New Group
+  </h1> 
+</div>
+<div class="panel panel-default">
+  <a href="/groups" class="btn btn-warning pull-right">Go Back</a>
+  <div class="panel-body">
+    <form action="javascript:void(0)" ng-submit="createGroup(group)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" ng-model="group.name" placeholder="What's the new name?" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description"  ng-model="group.description"placeholder="Describe the flavor!" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" id="type" name="type"  ng-model="group.type" placeholder="What does the new flavor look like?" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" name="imageUrl"  ng-model="group.imageUrl" placeholder="What does the new flavor look like?" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input type="text" id="startDate" name="startDate"  ng-model="group.startDate" placeholder="What does the new flavor look like?" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="text" id="endDate" name="endDate"  ng-model="group.endDate" placeholder="What does the new flavor look like?" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address"  ng-model="group.address" placeholder="What does the new flavor look like?" class="form-control">
+      </div>
+      <input type="submit" class="btn btn-primary pull-right" value="Add!">
+
+    </form>
+  </div>
+</div>

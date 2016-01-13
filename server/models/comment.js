@@ -9,7 +9,7 @@ var commentSchema = new mongoose.Schema({
                     group: {
                           type: mongoose.Schema.Types.ObjectId,
                           ref: "Group"
-                          },
+                          }
                 });
 
 var Comment = mongoose.model("Comment", commentSchema);

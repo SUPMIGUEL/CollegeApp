@@ -1,0 +1,41 @@
+<div class="row">
+  <h1 class="text-center">
+    Edit
+  </h1> 
+</div>
+<div class="panel panel-default">
+  <a href="/groups" class="btn btn-warning pull-right">Go Back</a>
+  <div class="panel-body">
+    <form action="javascript:void(0)" ng-submit="editGroup(group)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" ng-model="group.name" placeholder="What's the new name?" class="form-control" value="{{group.name}}">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" ng-model="group.description" placeholder="Describe the flavor!" class="form-control" value="{{group.description}}">
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" id="type" name="type" ng-model="group.type" placeholder="Describe the flavor!" class="form-control" value="{{group.type}}">
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" name="imageUrl" ng-model="group.imageUrl" placeholder="What does the new flavor look like?" class="form-control" value="{{group.imageUrl}}">
+      </div>
+      <div class="form-group">
+        <label for="startdate">Start date</label>
+        <input type="text" id="startdate" name="startdate" ng-model="group.startdate" placeholder="What does the new flavor look like?" class="form-control" value="{{group.startdate}}">
+      </div>
+      <div class="form-group">
+        <label for="enddate">End date</label>
+        <input type="text" id="enddate" name="enddate" ng-model="group.enddate" placeholder="What does the new flavor look like?" class="form-control" value="{{group.enddate}}">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" ng-model="group.address" placeholder="What does the new flavor look like?" class="form-control" value="{{group.address}}">
+      </div>
+      <input type="submit" class="btn btn-primary pull-right" value="Edit!">
+    </form>
+  </div>
+</div> 

@@ -1,0 +1,135 @@
+<div class="row">
+  <h1 class="text-center">
+    Signup
+  </h1> 
+</div>
+<div class="row">
+  <div class="col-md-3">
+                
+  </div>
+  <div class="col-md-6" id="login_box">
+    <div ng-show="errors"> {{errors}} </div>
+    <form name="userForm" ng-submit="signup(user)" novalidate class="form-horizontal">
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine || userForm.username.$invalid && userForm.username.$touched,'has-success' : userForm.username.$valid }">
+        <label class="col-sm-2 control-label" for="username">Username</label>
+          <div class="col-sm-10">
+            <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username" autofocus>
+          </div>
+          <div class="help-block" ng-messages="userForm.username.$error" ng-if="!userForm.username.$pristine || userForm.username.$touched">
+            <p ng-message="required">Your username is required.</p>
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine || userForm.firstname.$invalid && userForm.firstname.$touched,'has-success' : userForm.firstname.$valid }">
+        <label class="col-sm-2 control-label" for="firstname">First Name</label>
+          <div class="col-sm-10">
+            <input type="text" name="firstname" class="form-control" ng-model="user.firstname" ng-required="true" id="firstname">
+          </div>
+          <div class="help-block" ng-messages="userForm.firstname.$error" ng-if="!userForm.firstname.$pristine || userForm.firstname.$touched">
+            <p ng-message="required">Your first name is required.</p>
+          </div>
+      </div>
+      
+      <div class="form-group" ng-class="{ 'has-error' : userForm.lastname.$invalid && !userForm.lastname.$pristine || userForm.lastname.$invalid && userForm.lastname.$touched,'has-success' : userForm.lastname.$valid }">
+        <label class="col-sm-2 control-label" for="lastname">Last Name</label>
+          <div class="col-sm-10">
+            <input type="text" name="lastname" class="form-control" ng-model="user.lastname" ng-required="true" id="lastname">
+          </div>
+          <div class="help-block" ng-messages="userForm.lastname.$error" ng-if="!userForm.lastname.$pristine || userForm.lastname.$touched">
+            <p ng-message="required">Your last name is required.</p>
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.description.$invalid && !userForm.description.$pristine || userForm.description.$invalid && userForm.description.$touched,'has-success' : userForm.description.$valid }">
+        <label class="col-sm-2 control-label" for="description">About you</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows="3" name="description" ng-model="user.description" ng-required="true" id="description"></textarea>
+          </div>
+          <div class="help-block" ng-messages="userForm.description.$error" ng-if="!userForm.description.$pristine || userForm.description.$touched">
+            <p ng-message="required">Help to your students to know more about you.</p>
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine || userForm.email.$invalid && userForm.email.$touched,'has-success' : userForm.email.$valid }">
+        <label class="col-sm-2 control-label" for="email">Email</label>
+          <div class="col-sm-10">
+            <input type="email" name="email" class="form-control" ng-model="user.email" ng-required="true" id="email" ng-minlength="4">
+          </div>
+          <div class="help-block" ng-messages="userForm.email.$error" ng-if="!userForm.email.$pristine || userForm.email.$touched">
+            <p ng-message="minlength">Your email is too short.</p>
+            <p ng-message="email">This needs to be a valid email</p>
+            <p ng-message="required">Your email is required.</p>
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.type.$invalid && !userForm.type.$pristine || userForm.type.$invalid && userForm.type.$touched,'has-success' : userForm.type.$valid }">
+        <label class="col-sm-2 control-label" for="type">Type of Account</label>
+          <div class="col-sm-5">
+            <div class="radio">
+              <label>
+                <input type="radio" name="type" id="type" value="instructor" ng-model="user.type" required="true">
+                Teacher/Instructor
+              </label>
+            </div>
+            <!-- <input type="type" name="type" class="form-control" ng-model="user.type" ng-required="true" id="type"> -->
+          </div>
+          <div class="col-sm-5">
+            <div class="radio">
+              <label>
+                <input type="radio" name="type" id="type" value="student" ng-model="user.type" required="true">
+                Student/Learner
+              </label>
+            </div>
+          </div>
+          <div class="help-block" ng-messages="userForm.type.$error" ng-if="!userForm.type.$pristine || userForm.type.$touched">
+            <p ng-message="required">This field is required.</p>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="personalweb">Website</label>
+          <div class="col-sm-10">
+            <input type="text" name="personalweb" class="form-control" ng-model="user.personalweb" id="personalweb">
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="twitter">Twitter</label>
+          <div class="col-sm-10">
+            <input type="text" name="twitter" class="form-control" ng-model="user.twitter" id="twitter">
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="phone">Phone number</label>
+          <div class="col-sm-10">
+            <input type="text" name="phone" class="form-control" ng-model="user.phone" id="phone">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-2 control-label" for="imageUrl">Picture</label>
+          <div class="col-sm-10">
+            <input type="hidden" role="uploadcare-uploader" data-crop="disabled" data-images-only="true" name="imageUrl" class="btn form-control" ng-model="user.imageUrl" id="imageUrl">
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine || userForm.password.$invalid && userForm.password.$touched,'has-success' : userForm.password.$valid }">
+        <label class="col-sm-2 control-label" for="password">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" ng-model="user.password" ng-required="true" id="password">
+          </div>
+          <div class="help-block" ng-messages="userForm.password.$error" ng-if="!userForm.password.$pristine || userForm.password.$touched">
+            <p ng-message="required">Your password is required.</p>
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-success btn-lg" ng-disabled="userForm.$invalid">Log In</button>
+    </form>
+    <h5>Have an account already? <a href="/login">Log In here</a></h5>
+  </div>
+  <div class="col-md-3">
+                
+  </div>
+</div>

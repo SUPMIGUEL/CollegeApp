@@ -1,0 +1,12 @@
+<div class="row">
+  <h1 class="text-center">
+    Your Profile
+  </h1> 
+</div>
+<h1>Here is some info about {{user.username}}</h1>
+<p>{{user.firstname}}</p>
+<p>{{user.lastname}}</p>
+<p>{{user.description}}</p>
+<p>{{user.type}}</p>
+<p>{{user.email}}</p>
+<a ng-href="/users/{{user._id}}/edit" ng-show="currentUser.username === user.username" class="btn btn-warning">Edit</a>

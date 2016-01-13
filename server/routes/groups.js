@@ -12,9 +12,12 @@ apiRouter.get('/', function(req,res){
 });
 
 apiRouter.get('/:groupId', function(req,res){
-  db.Group.findById(req.params.groupId).populate("owner").exec(function(error,group){
+  db.Group.findById(req.params.groupId).populate({ path: 'owner comments'}).exec(function(error,group){
     if (error) return res.json({message: "Sorry, there was an error finding that group!", error: error});
-    res.json(group);
+    db.Comment.find({ _id: { $in: group.comments }}).populate("user").exec(function(err, comments){
+      console.log("COMMENTS"+comments);
+      res.json({group: group, comments: comments});
+    });
   });
 });
 
