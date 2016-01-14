@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 var User = require("./user");
+var Group = require("./group");
+var Comment = require("./comment");
 
 var Homeworks = new mongoose.Schema({ homework: String });
 var Projects = new mongoose.Schema({ project: String });
@@ -19,8 +21,7 @@ var groupSchema = new mongoose.Schema({
                             required: true, 
                            },
                     imageUrl: {
-                                type: String,
-                                required: true, 
+                                type: String
                               },
                     startDate: {
                                   type: String,
@@ -31,8 +32,7 @@ var groupSchema = new mongoose.Schema({
                               required: true, 
                                },
                     address: {
-                              type: String,
-                              required: true, 
+                              type: String
                                },
                     locationDetails: { type: String },
                     rules: { type: String },
@@ -49,8 +49,12 @@ var groupSchema = new mongoose.Schema({
                     notes: [Notes]
 });
 
-var Group = mongoose.model("group", groupSchema);
+groupSchema.pre('remove', function(next) {
+    Comment.find({ group: this._id }).remove().exec();
+    next();
+});
 
+var Group = mongoose.model("group", groupSchema);
 module.exports = Group;
 
 /*name, description, type, imageUrl, startdate, 

@@ -27,13 +27,26 @@ app.controller("LoginController", function($scope, UserService, $location){
   };
 });
 
-app.controller("UserController", function($scope, user, UserService, $routeParams){
+app.controller("UserController", function($scope, user, UserService, $routeParams, $location){
   /*$scope.user = user.data;*/
   UserService.getSingleUser($routeParams.id).then(function(res){
     $scope.user = res.data;
   }).catch(function(err){
     $location.path('/');
   });
+
+  $scope.removeUser = function(user){
+    if (confirm('Are you sure you want to delete your account?')) {
+      if (confirm('Are you sure?')) {
+        UserService.removeUser(user._id).then(function(user){
+          UserService.logout();
+          $location.path('/');
+        }).catch(function(err){
+          $scope.errors = err;
+        });
+      }
+    }
+  };
 });
 
 app.controller("EditController", function($scope, $location, UserService, user, $window, $rootScope){
@@ -47,14 +60,14 @@ app.controller("EditController", function($scope, $location, UserService, user, 
     });
   };
 
-  $scope.removeUser = function(user){
+  /*$scope.removeUser = function(user){
     UserService.removeUser(user).then(function(data){
       UserService.logout();
       $location.path('/');
     }).catch(function(err){
       $scope.errors = err;
     });
-  };
+  };*/
 });
 
 app.controller("UsersController", function($scope,currentUser,users){
@@ -88,15 +101,22 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
   }).catch(function(err){
     $location.path('/');
   });
+
   $scope.deleteGroup = function(group){
-    GroupService.deleteGroup(group._id).then(function(group){
-      $location.path('/');
-    }).catch(function(err) {
-      console.log("Error", err);
-    });
+    if (confirm('Are you sure you want to delete this group?')) {
+      if (confirm('Are you sure?')) {
+        GroupService.deleteGroup(group._id).then(function(group){
+          $location.path('/');
+        }).catch(function(err) {
+          console.log("Error", err);
+        });
+      }
+    }
   };
+
   $scope.createComment = function(comment){ // REFACTOR TO UPDATE 
     GroupService.createComment(comment).then(function(){
+      $scope.comment.content="";
       $scope.update();
       $location.path('/groups/'+$routeParams.id);
     }).catch(function(err){
@@ -104,12 +124,14 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
     });
   };
   $scope.deleteComment = function(comment){
-    GroupService.deleteComment(comment._id).then(function(comment){
-      $scope.update();
-      $location.path('/groups/'+$routeParams.id);
-    }).catch(function(err) {
-      $location.path('/');
-    });
+    if (confirm('Are you sure you want to delete this comment?')) {
+      GroupService.deleteComment(comment._id).then(function(comment){
+        $scope.update();
+        $location.path('/groups/'+$routeParams.id);
+      }).catch(function(err) {
+        $location.path('/');
+      });
+    }
   };
   $scope.update = function(){
     GroupService.getGroup($routeParams.id).then(function(res){

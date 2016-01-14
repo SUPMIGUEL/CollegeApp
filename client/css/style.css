@@ -15,7 +15,13 @@ body{
     text-align:center;
 }
 .logos{
-    border-radius: 150px;
+    border-radius: 30px;
+    margin: 10px 10px 10px 10px;
+    height: 90px;
+    width: 90px;
+}
+.mini_picture{
+    border-radius: 15px;
     margin: 10px 10px 10px 10px;
     height: 90px;
     width: 90px;
@@ -32,4 +38,88 @@ body{
 }
 h1{
   margin-bottom: 20px;
+}
+footer{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.box{
+  border-radius: 15px;
+  text-align: center;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+}
+.box{
+  border-radius: 15px;
+  text-align: center;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+}
+#box_profile{
+  border-radius: 15px;
+  text-align: left;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+}
+#box_group{
+  border-radius: 15px;
+  text-align: left;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+  margin-bottom: 10px;
+}
+#mini_box_group{
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #B8B8B8;
+  padding: 30px;
+  margin-bottom: 10px;
+}
+#profile_picture{
+  width: 100%;
+  height: 100%;
+}
+table{
+  width: 100%;
+}
+th{
+  text-align: center;
+  background-color: gray;
+}
+li{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1000ms ease;
+}
+li:hover{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1000ms ease;
+  background-color: #cccccc;
+}
+#register{
+  background-color: #ffaa80;
+}
+#register:hover{
+  background-color: #ff751a;
+}
+#my_profile{
+  background-color:  #99c2ff;
+}
+#my_profile:hover{
+  background-color:  #668cff;
+}
+#logout:hover{
+  background-color:  #ff4d4d;
+}
+#new:hover{
+  background-color:  #99ffbb;
 }

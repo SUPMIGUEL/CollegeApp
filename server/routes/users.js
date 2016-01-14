@@ -10,6 +10,10 @@ apiRouter.use(auth.checkHeaders);
 apiRouter.post('/signup',function(req,res){
   db.User.create(req.body, function(err,user){
     if(err) return res.status(400).send(err);
+    if (user && !user.imageUrl) {
+      user.imageUrl = "http://www.themiceworld.com/images/user-unknown-icon.jpg";
+      user.save();
+    }
     var listedItems = {id: user._id, username: user.username};
     token = tokenLib.sign(user._id);
     res.json({token:token, user:listedItems});
@@ -35,7 +39,6 @@ apiRouter.get('/', auth.checkToken, function(req,res){
 });
 
 apiRouter.get('/:id', auth.checkToken, function(req,res){
-  console.log("HEEEEEEELP");
   db.User.findById(req.params.id, function(err,user){
     if (err) res.status(500).send(err);
     if (!user) res.status(401).send(err);
@@ -48,6 +51,10 @@ apiRouter.put('/:id', auth.checkToken, function(req,res){
  db.User.findByIdAndUpdate(req.decoded_id, req.body, {new: true}, function(err,user){
    if (err) res.status(400).send(err);
    else { //MAYBE NOT NEEDED?
+    if (user && !user.imageUrl) {
+      user.imageUrl = "http://www.themiceworld.com/images/user-unknown-icon.jpg";
+      user.save();
+    }
     var listedItems = {id: user._id, username: user.username};
     res.status(200).send(listedItems);
    }
@@ -55,9 +62,10 @@ apiRouter.put('/:id', auth.checkToken, function(req,res){
 });
 
 apiRouter.delete('/:id', auth.checkToken, function(req,res){
-  db.User.findByIdAndRemove(req.decoded_id, function(err,user){
+  db.User.findById(req.decoded_id, function(err,user){
     if (err) res.status(500).send(err);
     if (!user) res.status(401).send(err);
+    user.remove();
     res.status(200).send("Removed");
   });
 });

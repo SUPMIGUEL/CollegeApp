@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
 var Group = require("./group");
+var Comment = require("./comment");
 
 var userSchema = new mongoose.Schema({
   username: {
@@ -13,7 +14,9 @@ var userSchema = new mongoose.Schema({
               type:String,
               required: true
             },
-  imageUrl:{ type:String },
+  imageUrl:{ 
+              type:String
+            },
   firstname: {
               type:String,
               required: true
@@ -44,7 +47,8 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('remove', function(next) {
-    Group.remove( { owner: this._id } ).exec();
+    Group.find({ owner: this._id }).remove().exec();
+    Comment.find({ user: this._id }).remove().exec();
     next();
 });
 

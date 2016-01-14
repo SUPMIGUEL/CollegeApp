@@ -1,66 +1,111 @@
 <div class="row">
   <h1 class="text-center">
-    Group
+    Group 
   </h1> 
 </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">{{res.group.name}}</div>
-
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-xs-3">
-          <img src="{{res.group.imageUrl}}">
-        </div>
-        <div class="col-xs-9">
-          <div>
-            {{res.group.description}}
-          </div>
-          <div class="pull-right" ng-show="currentUser.username === res.group.owner.username">
-            <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-success">Edit</a>
-            <button class="btn btn-danger" ng-click="deleteGroup(group)">Delete</button>
-            <a ng-href="/groups" class="btn btn-primary">Go Back</a>
-          </div>
-          OWNER: {{res.group.owner.username}}
-        </div>
-      </div>
-      <button class="btn btn-success" ng-click="display=!display" ng-show="currentUser">+ Comment</button>
-    </div>
-
-    <div class="panel-body" ng-show="display">
-      <div class="row">
-        <div class="col-xs-12">
-          New Comment
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <form action="javascript:void(0)" ng-submit="createComment(comment)">
-              <label for="content">Comment</label>
-              <input type="text" id="content" name="content" ng-model="comment.content" placeholder="What's the new comment?" class="form-control">
-              <span ng-show="false" ng-value="comment.group_id=res.group._id"></span>
-              <input type="submit" class="btn btn-primary" value="Add!">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-xs-12">
-          Comments
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-        <div ng-repeat="comment in res.comments">
-          {{comment.content}}
-          <a ng-href="/users/{{comment.user._id}}">{{comment.user.username}}</a> 
-          <button class="btn btn-danger" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username">Delete</button>
-        </div>
-        </div>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-1">
     
   </div>
+  <div class="col-md-10" id="box_group">
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <img src="{{res.group.imageUrl}}" id="group_picture">
+        <h3>{{res.group.type}}</h3>
+      </div>
+      <div class="col-md-8">
+        <h2 class="text-center">{{res.group.name}}</h2>
+        <dl class="dl-horizontal">
+          <dt>About:</dt>
+          <dd>{{res.group.description}}</dd>
+          <dt>Stars:</dt>
+          <dd>{{res.group.startDate}}</dd>
+          <dt>Ends:</dt>
+          <dd>{{res.group.endDate}}</dd>
+          <dt>Address:</dt>
+          <dd>{{res.group.address}}</dd>
+          <dt>Location Details:</dt>
+          <dd>{{res.group.locationDetails}}</dd>
+          <dt>Rules:</dt>
+          <dd>{{res.group.rules}}</dd>
+        </dl>
+      </div>
+      <div class="col-md-2 text-center">
+        <img src="{{res.group.owner.imageUrl}}" id="profile_picture">
+        <h3>{{res.group.owner.username}}</h3>
+        <div ng-show="currentUser.username === res.group.owner.username">
+          <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-success btn-block">Edit Group</a>
+          <button class="btn btn-danger btn-block" ng-click="deleteGroup(res.group)">Delete Group</button><br>
+        </div>
+      </div>
+    </div>
+      <table>
+        <tr>
+          <th class="col-md-4">Homeworks</th>
+          <th class="col-md-4">Notes</th>
+          <th class="col-md-4">Projects</th>
+        </tr>
+        <tr>
+          <td>{{res.group.homeworks}}</td>
+          <td>{{res.group.notes}}</td>
+          <td>{{res.group.projects}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+  </div>
+  <div class="col-md-1">
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1">
+    
+  </div>
+  <div class="col-md-10" id="box_group">
+    <h2 class="text-center">Classroom Board</h2>
+
+    <div class="row">
+      <div class="col-md-12">
+          <dl class="dl-horizontal">
+            <span ng-repeat="comment in res.comments">
+              <dt><a ng-href="/users/{{comment.user._id}}">{{comment.user.username}}:</a></dt>
+              <dd>
+              {{comment.content}}
+              <button class="btn btn-danger btn-xs" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username">Delete</button>
+              </dd>
+            </span>
+          </dl>
+      </div>
+    </div>
+
+    <button class="btn btn-success" ng-click="display=!display" ng-show="currentUser && !display">+ Comment</button>
+    <div class="panel-body" ng-show="display">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <form name="commentForm" ng-submit="createComment(comment)" novalidate class="form-horizontal">
+              <div class="form-group" ng-class="{ 'has-error' : commentForm.content.$invalid && !commentForm.content.$pristine || commentForm.content.$invalid && commentForm.content.$touched,'has-success' : commentForm.content.$valid }">
+                <label class="col-sm-2 control-label" for="content">New Comment:</label>
+                  <div class="col-sm-10">
+                    <textarea name="content" rows="3" class="form-control" ng-model="comment.content" ng-required="true" id="content" placeholder="What's the new comment?"></textarea>
+                  </div>
+                  <div class="help-block" ng-messages="commentForm.content.$error" ng-if="!commentForm.content.$pristine || commentForm.content.$touched">
+                    <p ng-message="required" class="text-center">The content of the comment is required.</p>
+                  </div>
+              </div>
+              <span ng-show="false" ng-value="comment.group_id=res.group._id"></span>
+              <div class="text-center">
+              <button type="submit" class="btn btn-success" ng-disabled="commentForm.$invalid">Add</button>
+              <a class="btn btn-info" ng-click="display=!display">Cancel</a>
+              </div>
+            </form>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1">
+    
+  </div>
+</div>

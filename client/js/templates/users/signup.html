@@ -14,7 +14,7 @@
       <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine || userForm.username.$invalid && userForm.username.$touched,'has-success' : userForm.username.$valid }">
         <label class="col-sm-2 control-label" for="username">Username</label>
           <div class="col-sm-10">
-            <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username" autofocus>
+            <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username" maxlength="14">
           </div>
           <div class="help-block" ng-messages="userForm.username.$error" ng-if="!userForm.username.$pristine || userForm.username.$touched">
             <p ng-message="required">Your username is required.</p>
@@ -111,7 +111,8 @@
       <div class="form-group">
           <label class="col-sm-2 control-label" for="imageUrl">Picture</label>
           <div class="col-sm-10">
-            <input type="hidden" role="uploadcare-uploader" data-crop="disabled" data-images-only="true" name="imageUrl" class="btn form-control" ng-model="user.imageUrl" id="imageUrl">
+            <!-- <input type="hidden" role="uploadcare-uploader" data-crop="disabled" data-images-only="true" name="imageUrl" class="btn form-control" ng-model="user.imageUrl" id="imageUrl"> -->
+            <input type="text" name="imageUrl" class="form-control" ng-model="user.imageUrl" id="imageUrl">
           </div>
       </div>
 

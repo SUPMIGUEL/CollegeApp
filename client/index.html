@@ -10,7 +10,7 @@
     }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <nav class="navbar navbar-default" ng-controller="NavController">
@@ -19,18 +19,20 @@
       <a href="/" class="navbar-brand">College App</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li>
-        <a class="btn btn-success" href="/groups/new">+ New Group</a>
+      <li id="new">
+        <a href="/groups/new">+ New Group</a>
       </li>
-
-      <li ng-show="currentUser.username">
-        <a class="btn btn-warning" href="/logout">Logout</a>
+      <li ng-show="currentUser.username" id="logout">
+        <a href="/logout">Logout</a>
       </li>
-      <li ng-show="currentUser.username">
-        <a class="btn btn-info" href="/users/{{currentUser.id}}">My profile</a>
+      <li ng-show="currentUser.username" id="my_profile">
+        <a href="/users/{{currentUser.id}}">My profile</a>
       </li>
       <li ng-show="!currentUser.username">
-        <a class="btn btn-primary" href="/login">Login</a>
+        <a href="/login">Login</a>
+      </li>
+      <li ng-show="!currentUser.username" id="register">
+        <a href="/signup">Register</a>
       </li>
     </ul>
   </div>
@@ -42,6 +44,10 @@
     </div>
   </div>
 
+  <footer class="text-center">
+    <p class="text-muted">©Miguel A. González Copyright 2016. All rights reserved</p>
+  </footer>
+  
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>

@@ -53,8 +53,8 @@ app.service("UserService", ["$http", "$window", "$rootScope", function($http, $w
     editUser: function(user){
       return $http.put("/api/users/" + user.id, user);
     },
-    removeUser: function(user){
-      return $http.delete("/api/users/" + user.id);
+    removeUser: function(id){
+      return $http.delete("/api/users/" + id);
     }
   };
 }]);
