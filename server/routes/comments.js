@@ -19,7 +19,7 @@ apiRouter.post('/', auth.checkToken, function(req,res){
           comment.save();
           group.save();
           res.json({ message: 'Comment created!' });
-        }
+        } 
       });
     }  
   });

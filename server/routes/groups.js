@@ -15,8 +15,13 @@ apiRouter.get('/:groupId', function(req,res){
   db.Group.findById(req.params.groupId).populate({ path: 'owner comments'}).exec(function(error,group){
     if (error) return res.json({message: "Sorry, there was an error finding that group!", error: error});
     db.Comment.find({ _id: { $in: group.comments }}).populate("user").exec(function(err, comments){
-      console.log("COMMENTS"+comments);
-      res.json({group: group, comments: comments});
+      db.Homework.find({ _id: { $in: group.homeworks }}).exec(function(err, homeworks){
+        db.Note.find({ _id: { $in: group.notes }}).exec(function(err, notes){
+          db.Project.find({ _id: { $in: group.projects }}).exec(function(err, projects){
+            res.json({group: group, comments: comments, homeworks: homeworks, notes: notes, projects: projects});
+          });
+        });
+      });
     });
   });
 });

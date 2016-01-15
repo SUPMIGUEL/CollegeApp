@@ -40,9 +40,9 @@
           
           <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Homework</button>
           
-          <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Project</button>
-
           <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Note</button>
+
+          <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Project</button>
 
           <br>
         </div>
@@ -119,9 +119,9 @@
             <tr>
               <th>Homeworks</th>
             </tr>
-            <tr ng-repeat="homework in res.group.homeworks">
+            <tr ng-repeat="homework in res.homeworks">
               <td>
-                - {{homework.homework}}
+                - {{homework.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>
@@ -132,9 +132,9 @@
             <tr>
               <th>Notes</th>
             </tr>
-            <tr ng-repeat="note in res.group.notes">
+            <tr ng-repeat="note in res.notes">
               <td>
-                - {{note.note}}
+                - {{note.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>
@@ -145,9 +145,9 @@
             <tr>
               <th>Projects</th>
             </tr>
-            <tr ng-repeat="project in res.group.projects">
+            <tr ng-repeat="project in res.projects">
               <td>
-                - {{project.project}}
+                - {{project.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>

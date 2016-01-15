@@ -8,25 +8,28 @@ apiRouter.use(auth.checkHeaders);
 
 //////////// NEEEEEED MIDDLEWARE SECURITY
 apiRouter.post('/', auth.checkToken, function(req,res){
-  db.Group.findById(req.body.group_id, function(error,group){
+  db.Project.create(req.body,function(error, project){
     if (error) return res.status(400).send(error);
-    group.projects.push({project: req.body.content});
-    group.save();
-    res.json({ message: 'project created!' });
+    else {
+      db.Group.findById(req.body.group_id,function(err,group){
+        if (error) return res.status(400).send(error);
+        else {
+          group.projects.push(project);  
+          project.group = group._id;
+          project.save(); 
+          group.save();
+          res.json({ message: 'Project created!' });
+        }
+      });
+    }  
   });
 });
 
 apiRouter.delete('/:projectId', auth.checkToken, function(req,res){
-  console.log("HIIIIIIII!");
-  db.Group.findById(req.params.projectId, function(error,group){
-    if (error) return res.status(400).send(error);
-
-    console.log("NOT DELETED YET!!!!!");
-    console.log(group);
-    console.log(req.body);
-    
- 
-    res.json({ message: 'project deleted!' });
+  db.Project.findById(req.params.projectId, function(error,project){
+    if (error) return res.json({message: "Sorry, there was an error finding that project!", error: error});
+    project.remove();
+    res.json({ message: 'Project successfully deleted' });
   });
 });
 

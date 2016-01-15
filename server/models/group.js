@@ -2,8 +2,8 @@ var mongoose = require("mongoose");
 var User = require("./user");
 var Group = require("./group");
 var Comment = require("./comment");
+var Homework = require("./homework");
 
-var Homeworks = new mongoose.Schema({ homework: String });
 var Projects = new mongoose.Schema({ project: String });
 var Notes = new mongoose.Schema({ note: String });
 
@@ -44,13 +44,19 @@ var groupSchema = new mongoose.Schema({
                               type: mongoose.Schema.Types.ObjectId,
                               ref: "Comment"
                             }],
-                    homeworks: [Homeworks],
+                    homeworks: [{
+                                type: mongoose.Schema.Types.ObjectId,
+                                ref: "Homework"
+                              }],
                     projects: [Projects],
                     notes: [Notes]
 });
 
 groupSchema.pre('remove', function(next) {
     Comment.find({ group: this._id }).remove().exec();
+    Homework.find({ group: this._id }).remove().exec();
+    Note.find({ group: this._id }).remove().exec();
+    Project.find({ group: this._id }).remove().exec();
     next();
 });
 

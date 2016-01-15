@@ -169,12 +169,14 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
   };
 
   $scope.deleteHomework = function(homework){
-    GroupService.deleteHomework(homework).then(function(){
-      $scope.update();
-      $location.path('/groups/'+$routeParams.id);
-    }).catch(function(err){
-      $location.path('/');
-    });
+    if (confirm('Are you sure you want to delete this homework?')) {
+      GroupService.deleteHomework(homework).then(function(){
+        $scope.update();
+        $location.path('/groups/'+$routeParams.id);
+      }).catch(function(err){
+        $location.path('/');
+      });
+    }
   };
 
   $scope.createNote = function(note){
@@ -189,12 +191,14 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
   };
 
   $scope.deleteNote = function(note){
-    GroupService.deleteNote(note).then(function(){
-      $scope.update();
-      $location.path('/groups/'+$routeParams.id);
-    }).catch(function(err){
-      $location.path('/');
-    });
+    if (confirm('Are you sure you want to delete this note?')) {
+      GroupService.deleteNote(note).then(function(){
+        $scope.update();
+        $location.path('/groups/'+$routeParams.id);
+      }).catch(function(err){
+        $location.path('/');
+      });
+    }
   };
 
   $scope.createProject = function(project){
@@ -209,12 +213,14 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
   };
 
   $scope.deleteProject = function(project){
-    GroupService.deleteProject(project).then(function(){
-      $scope.update();
-      $location.path('/groups/'+$routeParams.id);
-    }).catch(function(err){
-      $location.path('/');
-    });
+    if (confirm('Are you sure you want to delete this project?')) {
+      GroupService.deleteProject(project).then(function(){
+        $scope.update();
+        $location.path('/groups/'+$routeParams.id);
+      }).catch(function(err){
+        $location.path('/');
+      });
+    }
   };
 
   $scope.update = function(){

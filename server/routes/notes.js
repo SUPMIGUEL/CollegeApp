@@ -8,25 +8,28 @@ apiRouter.use(auth.checkHeaders);
 
 //////////// NEEEEEED MIDDLEWARE SECURITY
 apiRouter.post('/', auth.checkToken, function(req,res){
-  db.Group.findById(req.body.group_id, function(error,group){
+  db.Note.create(req.body,function(error, note){
     if (error) return res.status(400).send(error);
-    group.notes.push({note: req.body.content});
-    group.save();
-    res.json({ message: 'note created!' });
+    else {
+      db.Group.findById(req.body.group_id,function(err,group){
+        if (error) return res.status(400).send(error);
+        else {
+          group.notes.push(note);  
+          note.group = group._id;
+          note.save(); 
+          group.save();
+          res.json({ message: 'Note created!' });
+        }
+      });
+    }  
   });
 });
 
 apiRouter.delete('/:noteId', auth.checkToken, function(req,res){
-  console.log("HIIIIIIII!");
-  db.Group.findById(req.params.noteId, function(error,group){
-    if (error) return res.status(400).send(error);
-
-    console.log("NOT DELETED YET!!!!!");
-    console.log(group);
-    console.log(req.body);
-    
- 
-    res.json({ message: 'note deleted!' });
+  db.Note.findById(req.params.noteId, function(error,note){
+    if (error) return res.json({message: "Sorry, there was an error finding that note!", error: error});
+    note.remove();
+    res.json({ message: 'Note successfully deleted' });
   });
 });
 
