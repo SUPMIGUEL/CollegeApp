@@ -111,22 +111,15 @@
       <div class="form-group">
           <label class="col-sm-2 control-label" for="imageUrl">Picture</label>
           <div class="col-sm-10">
-            <!-- <input type="hidden" role="uploadcare-uploader" data-crop="disabled" data-images-only="true" name="imageUrl" class="btn form-control" ng-model="user.imageUrl" id="imageUrl"> -->
-            <input type="text" name="imageUrl" class="form-control" ng-model="user.imageUrl" id="imageUrl">
+            <a class="btn btn-default" ng-click="add()" ng-show="btnshow">Change Photo</a>
+            <span class="btn btn-default glyphicon glyphicon-ok" ng-disabled="true" id="access" ng-hide="btnshow"></span>
+            <input type="hidden" name="imageUrl" class="form-control" id="imageUrl" ng-value="user.imageUrl=url">
           </div>
+      </div> 
+
+      <div class="text-center">
+      <button type="submit" class="btn btn-default btn-lg" id="access" ng-disabled="userForm.$invalid"><span class="glyphicon glyphicon-ok"></span>  Save</button>
       </div>
-
-      <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine || userForm.password.$invalid && userForm.password.$touched,'has-success' : userForm.password.$valid }">
-        <label class="col-sm-2 control-label" for="password">Password</label>
-          <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" ng-model="user.password" ng-required="true" id="password">
-          </div>
-          <div class="help-block" ng-messages="userForm.password.$error" ng-if="!userForm.password.$pristine || userForm.password.$touched">
-            <p ng-message="required">Your password is required.</p>
-          </div>
-      </div> -->
-
-      <button type="submit" class="btn btn-success btn-lg" ng-disabled="userForm.$invalid">Save</button>
     </form>
   </div>
   <div class="col-md-3">

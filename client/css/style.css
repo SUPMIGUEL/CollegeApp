@@ -1,18 +1,17 @@
 img{
   width: 100px;
   height: 100px;
-}
+} 
 body{
   background-color: white;
 }
 .group{
     width: 100%;
-    border-radius: 15px;
-    border-style: solid;
-    border-color: #B8B8B8;
+    background-color: #e6e6e6;
     color: black;
     margin-bottom: 10px;
     text-align:center;
+    padding-bottom: 10px;
 }
 .logos{
     border-radius: 30px;
@@ -58,19 +57,21 @@ footer{
   padding: 30px;
 }
 #box_profile{
-  border-radius: 15px;
-  text-align: left;
+  /*border-radius: 15px;
   border-style: solid;
-  border-color: #B8B8B8;
+  border-color: #B8B8B8;*/
+  background-color: #e6e6e6;
+  text-align: left;
   padding: 30px;
 }
 #box_group{
-  border-radius: 15px;
-  text-align: left;
+/*  border-radius: 15px;
   border-style: solid;
-  border-color: #B8B8B8;
-  padding: 30px;
-  margin-bottom: 10px;
+  border-color: #B8B8B8;*/
+  background-color: #e6e6e6;
+  text-align: left;
+  padding: 25px;
+  margin-bottom: 15px;
 }
 #mini_box_group{
   border-radius: 15px;
@@ -122,4 +123,32 @@ li:hover{
 }
 #new:hover{
   background-color:  #99ffbb;
+}
+#access{
+  background-color:  #53c653;
+  color: white;
+}
+#access:hover{
+  background-color:  #339933;
+}
+/*input[type="text"], textarea{
+  background-color: #f2f2f2;
+}*/
+#red{
+  color: white;
+  background-color: #ff4d4d;
+}
+#red:hover{
+  background-color: #ff1a1a;
+}
+#orange{
+  color: white;
+  background-color: #ff934d;
+}
+#orange:hover{ 
+  background-color: #e65b00;
+}
+#alert{
+  text-align: center;
+  background-color: #ffbf80;
 }

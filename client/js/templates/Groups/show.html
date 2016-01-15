@@ -34,25 +34,127 @@
         <img src="{{res.group.owner.imageUrl}}" id="profile_picture">
         <h3>{{res.group.owner.username}}</h3>
         <div ng-show="currentUser.username === res.group.owner.username">
-          <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-success btn-block">Edit Group</a>
-          <button class="btn btn-danger btn-block" ng-click="deleteGroup(res.group)">Delete Group</button><br>
+          <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-default btn-block" id="orange"><span class="glyphicon glyphicon-pencil"></span> Edit Group</a>
+          
+          <button class="btn btn-default btn-block" id="red" ng-click="deleteGroup(res.group)"><span class="glyphicon glyphicon-trash"></span> Delete Group</button>
+          
+          <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Homework</button>
+          
+          <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Project</button>
+
+          <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Note</button>
+
+          <br>
         </div>
       </div>
     </div>
-      <table>
-        <tr>
-          <th class="col-md-4">Homeworks</th>
-          <th class="col-md-4">Notes</th>
-          <th class="col-md-4">Projects</th>
-        </tr>
-        <tr>
-          <td>{{res.group.homeworks}}</td>
-          <td>{{res.group.notes}}</td>
-          <td>{{res.group.projects}}</td>
-        </tr>
-      </table>
-    </div>
     <div class="row">
+      <div ng-show="hwdisplay">
+          <form name="hwForm" ng-submit="createHomework(homework)" novalidate class="form-group form-horizontal"> 
+            <div class="form-group" ng-class="{ 'has-error' : hwForm.content.$invalid && !hwForm.content.$pristine || hwForm.content.$invalid && hwForm.content.$touched,'has-success' : hwForm.content.$valid }">
+              <label class="col-sm-2 control-label" for="content">New Homework:</label>
+                <div class="col-sm-10">
+                  <textarea name="content" rows="3" class="form-control" ng-model="homework.content" ng-required="true" id="content" placeholder="What's the new homework?" autofocus></textarea>
+                </div>
+                <div class="help-block" ng-messages="hwForm.content.$error" ng-if="!hwForm.content.$pristine || hwForm.content.$touched">
+                  <p ng-message="required" class="text-center">The content of the homework is required.</p>
+                </div>
+            </div>
+            <span ng-show="false" ng-value="homework.group_id=res.group._id"></span>
+            <div class="text-center">
+            <button type="submit" class="btn btn-default" id="access" ng-disabled="hwForm.$invalid"><span class="glyphicon glyphicon-ok"></span class="glyphicon glyphicon-ok">Add</button>
+            
+            </div>
+          </form>
+      </div>
+
+      <div ng-show="notedisplay">
+          <form name="noteForm" ng-submit="createNote(note)" novalidate class="form-group form-horizontal"> 
+            <div class="form-group" ng-class="{ 'has-error' : noteForm.content.$invalid && !noteForm.content.$pristine || noteForm.content.$invalid && noteForm.content.$touched,'has-success' : noteForm.content.$valid }">
+              <label class="col-sm-2 control-label" for="content">New Note:</label>
+                <div class="col-sm-10">
+                  <textarea name="content" rows="3" class="form-control" ng-model="note.content" ng-required="true" id="content" placeholder="What's the new note?" autofocus></textarea>
+                </div>
+                <div class="help-block" ng-messages="noteForm.content.$error" ng-if="!noteForm.content.$pristine || noteForm.content.$touched">
+                  <p ng-message="required" class="text-center">The content of the note is required.</p>
+                </div>
+            </div>
+            <span ng-show="false" ng-value="note.group_id=res.group._id"></span>
+            <div class="text-center">
+            <button type="submit" class="btn btn-default" id="access" ng-disabled="noteForm.$invalid"><span class="glyphicon glyphicon-ok"></span class="glyphicon glyphicon-ok">Add</button>
+            
+            </div>
+          </form>
+      </div>
+
+      <div ng-show="pjdisplay">
+          <form name="projectForm" ng-submit="createProject(project)" novalidate class="form-group form-horizontal"> 
+            <div class="form-group" ng-class="{ 'has-error' : projectForm.content.$invalid && !projectForm.content.$pristine || projectForm.content.$invalid && projectForm.content.$touched,'has-success' : projectForm.content.$valid }">
+              <label class="col-sm-2 control-label" for="content">New Project:</label>
+                <div class="col-sm-10">
+                  <textarea name="content" rows="3" class="form-control" ng-model="project.content" ng-required="true" id="content" placeholder="What's the new project?" autofocus></textarea>
+                </div>
+                <div class="help-block" ng-messages="projectForm.content.$error" ng-if="!projectForm.content.$pristine || projectForm.content.$touched">
+                  <p ng-message="required" class="text-center">The content of the project is required.</p>
+                </div>
+            </div>
+            <span ng-show="false" ng-value="project.group_id=res.group._id"></span>
+            <div class="text-center">
+            <button type="submit" class="btn btn-default" id="access" ng-disabled="projectForm.$invalid"><span class="glyphicon glyphicon-ok"></span class="glyphicon glyphicon-ok">Add</button>
+            
+            </div>
+          </form>
+      </div>
+
+      <div ng-show="pjdisplay">
+        Project
+      </div>
+
+      <div ng-show="notedisplay">
+        Note
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <table>
+            <tr>
+              <th>Homeworks</th>
+            </tr>
+            <tr ng-repeat="homework in res.group.homeworks">
+              <td>
+                - {{homework.homework}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-4">
+          <table>
+            <tr>
+              <th>Notes</th>
+            </tr>
+            <tr ng-repeat="note in res.group.notes">
+              <td>
+                - {{note.note}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+              </td>
+            </tr>
+          </table>  
+        </div>
+        <div class="col-md-4">
+          <table>
+            <tr>
+              <th>Projects</th>
+            </tr>
+            <tr ng-repeat="project in res.group.projects">
+              <td>
+                - {{project.project}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+              </td>
+            </tr>
+          </table>  
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-md-1">
     
@@ -72,14 +174,15 @@
               <dt><a ng-href="/users/{{comment.user._id}}">{{comment.user.username}}:</a></dt>
               <dd>
               {{comment.content}}
-              <button class="btn btn-danger btn-xs" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username">Delete</button>
+              <button class="btn btn-default btn-xs" id="red" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username"><span class="glyphicon glyphicon-remove"></span></button>
               </dd>
             </span>
           </dl>
       </div>
     </div>
 
-    <button class="btn btn-success" ng-click="display=!display" ng-show="currentUser && !display">+ Comment</button>
+    <button class="btn btn-default" id="access" ng-click="display=!display" ng-show="currentUser && !display"><span class="glyphicon glyphicon-plus"></span> New Comment</button>
+    <a class="btn btn-default pull-left" ng-click="display=!display" id="orange" ng-show="currentUser && display"><span class="glyphicon glyphicon-menu-left"></span>Cancel</a>
     <div class="panel-body" ng-show="display">
       <div class="row">
         <div class="col-md-12">
@@ -88,7 +191,7 @@
               <div class="form-group" ng-class="{ 'has-error' : commentForm.content.$invalid && !commentForm.content.$pristine || commentForm.content.$invalid && commentForm.content.$touched,'has-success' : commentForm.content.$valid }">
                 <label class="col-sm-2 control-label" for="content">New Comment:</label>
                   <div class="col-sm-10">
-                    <textarea name="content" rows="3" class="form-control" ng-model="comment.content" ng-required="true" id="content" placeholder="What's the new comment?"></textarea>
+                    <textarea name="content" rows="3" class="form-control" ng-model="comment.content" ng-required="true" id="content" placeholder="What's the new comment?" autofocus></textarea>
                   </div>
                   <div class="help-block" ng-messages="commentForm.content.$error" ng-if="!commentForm.content.$pristine || commentForm.content.$touched">
                     <p ng-message="required" class="text-center">The content of the comment is required.</p>
@@ -96,8 +199,8 @@
               </div>
               <span ng-show="false" ng-value="comment.group_id=res.group._id"></span>
               <div class="text-center">
-              <button type="submit" class="btn btn-success" ng-disabled="commentForm.$invalid">Add</button>
-              <a class="btn btn-info" ng-click="display=!display">Cancel</a>
+              <button type="submit" class="btn btn-default" id="access" ng-disabled="commentForm.$invalid"><span class="glyphicon glyphicon-ok"></span class="glyphicon glyphicon-ok">Add</button>
+              
               </div>
             </form>
           </div> 

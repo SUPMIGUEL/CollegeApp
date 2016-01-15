@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-var secret = "esponja";
+var secret = "esponja"; //// DANGER!!!! MOVE TO .ENV
 
 module.exports = {
   verify: function(req) {

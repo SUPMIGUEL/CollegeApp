@@ -15,9 +15,27 @@ app.service("GroupService",['$http', function($http){
     deleteGroup: function(id){
       return $http.delete("/api/groups/" + id);
     },
+    createHomework: function(homework){
+      return $http.post("/api/homeworks", homework);
+    }, 
+    deleteHomework: function(homework){
+      return $http.delete("/api/homeworks/" + homework._id, homework);
+    },
+    createNote: function(note){
+      return $http.post("/api/notes", note);
+    }, 
+    deleteNote: function(note){
+      return $http.delete("/api/notes/" + note._id, note);
+    },
+    createProject: function(project){
+      return $http.post("/api/projects", project);
+    }, 
+    deleteProject: function(project){
+      return $http.delete("/api/projects/" + project._id, project);
+    }, 
     createComment: function(comment){
       return $http.post("/api/comments/", comment);
-    },
+    }, 
     deleteComment: function(id){
       return $http.delete("/api/comments/" + id);
     }

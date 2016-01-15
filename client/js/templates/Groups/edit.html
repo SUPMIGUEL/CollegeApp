@@ -3,39 +3,152 @@
     Edit
   </h1> 
 </div>
-<div class="panel panel-default">
-  <a href="/groups" class="btn btn-warning pull-right">Go Back</a>
-  <div class="panel-body">
-    <form action="javascript:void(0)" ng-submit="editGroup(group)">
+<div class="row">
+  <div class="col-md-1">
+    
+  </div>
+  <div class="col-md-10 box">
+    <div class="row">
+      <a href="/groups/{{group._id}}" class="btn btn-warning pull-left">Go Back</a>
+    </div>
+    <div ng-show="errors"> {{errors}} </div>
+
+    <form name="groupForm" ng-submit="editGroup(group)" novalidate class="form-horizontal">
+      
+      <div class="form-group" ng-class="{ 'has-error' : groupForm.name.$invalid && !groupForm.name.$pristine || groupForm.name.$invalid && groupForm.name.$touched,'has-success' : groupForm.name.$valid }">
+          <label class="col-sm-2 control-label" for="name">Name:</label>
+          <div class="col-sm-10">
+            <input type="text" name="name" class="form-control" ng-model="group.name" ng-required="true" id="name" placeholder="What's the name of the group?">
+          </div>
+          <div class="help-block" ng-messages="groupForm.name.$error" ng-if="!groupForm.name.$pristine || groupForm.name.$touched">
+            <p ng-message="required">The name of the group is required.</p>
+          </div>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : groupForm.description.$invalid && !groupForm.description.$pristine || groupForm.description.$invalid && groupForm.description.$touched,'has-success' : groupForm.description.$valid }">
+          <label class="col-sm-2 control-label" for="description">Description:</label>
+            <div class="col-sm-10">
+              <textarea name="description" rows="3" class="form-control" ng-model="group.description" ng-required="true" id="description"></textarea>
+            </div>
+            <div class="help-block" ng-messages="groupForm.description.$error" ng-if="!groupForm.description.$pristine || groupForm.description.$touched">
+              <p ng-message="required">The description of the group is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : groupForm.type.$invalid && !groupForm.type.$pristine || groupForm.type.$invalid && groupForm.type.$touched,'has-success' : groupForm.type.$valid }">
+          <label class="col-sm-2 control-label" for="type">Type:</label>
+            <div class="col-sm-10">
+              <select id="type" name="type" ng-model="group.type" class="form-control" ng-required="true">
+                <option value="Class">Class</option>
+                <option value="Lab">Lab</option>
+                <option value="Lecture">Lecture</option>
+                <option value="Practical">Practical</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Study Group">Study Group</option>
+                <option value="Event">Event</option>
+                <option value="Club">Club</option>
+                <option value="Sport Team">Sport Team</option>
+              </select>
+            </div>
+            <div class="help-block" ng-messages="groupForm.type.$error" ng-if="!groupForm.type.$pristine || groupForm.type.$touched">
+              <p ng-message="required">The type of the group is required.</p>
+            </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="imageUrl">Image Group:</label>
+            <div class="col-sm-10">
+              <input type="text" name="imageUrl" class="form-control" ng-model="group.imageUrl" id="imageUrl">
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : groupForm.startDate.$invalid && !groupForm.startDate.$pristine || groupForm.startDate.$invalid && groupForm.startDate.$touched,'has-success' : groupForm.startDate.$valid }">
+          <label class="col-sm-2 control-label" for="startDate">Starts:</label>
+            <div class="col-sm-10">
+              <input type="text" name="startDate" class="form-control" ng-model="group.startDate" ng-required="true" id="startDate" placeholder="e.g. 01/20/2016">
+            </div>
+            <div class="help-block" ng-messages="groupForm.startDate.$error" ng-if="!groupForm.startDate.$pristine || groupForm.startDate.$touched">
+              <p ng-message="required">The start date of the group is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : groupForm.endDate.$invalid && !groupForm.endDate.$pristine || groupForm.endDate.$invalid && groupForm.endDate.$touched,'has-success' : groupForm.endDate.$valid }">
+          <label class="col-sm-2 control-label" for="endDate">Ends:</label>
+            <div class="col-sm-10">
+              <input type="text" name="endDate" class="form-control" ng-model="group.endDate" ng-required="true" id="endDate" placeholder="e.g. 05/18/2016">
+            </div>
+            <div class="help-block" ng-messages="groupForm.endDate.$error" ng-if="!groupForm.endDate.$pristine || groupForm.endDate.$touched">
+              <p ng-message="required">The end date of the group is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="address">Address:</label>
+            <div class="col-sm-10">
+              <input type="text" name="address" class="form-control" ng-model="group.address" id="address" placeholder="e.g. 44 Tehama St San Francisco CA 94105">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="locationDetails">Location Details:</label>
+            <div class="col-sm-10">
+              <input type="text" name="locationDetails" class="form-control" ng-model="group.locationDetails" id="locationDetails" placeholder="e.g. Building: A Room: 103">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="rules">Rules:</label>
+            <div class="col-sm-10">
+              <textarea name="rules" rows="5" class="form-control" ng-model="group.rules" id="rules" placeholder="e.g. - Be respectful of yourself and others. - Obey all school rules. -Always Do Your Best. - Don't eat the lunch of your classmates!"></textarea>
+            </div>
+        </div>
+
+      <button type="submit" class="btn btn-default btn-lg" id="access" ng-disabled="groupForm.$invalid"><span class="glyphicon glyphicon-ok"></span> Update Group</button>
+    </form>
+
+  </div>
+  <div class="col-md-1">
+    
+  </div>
+</div>
+
+
+
+    <!-- <form action="javascript:void(0)" ng-submit="editGroup(group)">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" ng-model="group.name" placeholder="What's the new name?" class="form-control" value="{{group.name}}">
+        <input type="text" id="name" name="name" ng-model="group.name" class="form-control" value="{{group.name}}">
       </div>
+
       <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" id="description" name="description" ng-model="group.description" placeholder="Describe the flavor!" class="form-control" value="{{group.description}}">
+        <input type="text" id="description" name="description" ng-model="group.description" class="form-control" value="{{group.description}}">
       </div>
+
       <div class="form-group">
         <label for="type">Type</label>
-        <input type="text" id="type" name="type" ng-model="group.type" placeholder="Describe the flavor!" class="form-control" value="{{group.type}}">
+        <input type="text" id="type" name="type" ng-model="group.type" class="form-control" value="{{group.type}}">
       </div>
+
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input type="text" id="imageUrl" name="imageUrl" ng-model="group.imageUrl" placeholder="What does the new flavor look like?" class="form-control" value="{{group.imageUrl}}">
+        <input type="text" id="imageUrl" name="imageUrl" ng-model="group.imageUrl" class="form-control" value="{{group.imageUrl}}">
       </div>
+
       <div class="form-group">
         <label for="startdate">Start date</label>
-        <input type="text" id="startdate" name="startdate" ng-model="group.startdate" placeholder="What does the new flavor look like?" class="form-control" value="{{group.startdate}}">
+        <input type="text" id="startdate" name="startdate" ng-model="group.startdate" class="form-control" value="{{group.startdate}}">
       </div>
+
       <div class="form-group">
         <label for="enddate">End date</label>
-        <input type="text" id="enddate" name="enddate" ng-model="group.enddate" placeholder="What does the new flavor look like?" class="form-control" value="{{group.enddate}}">
+        <input type="text" id="enddate" name="enddate" ng-model="group.enddate" class="form-control" value="{{group.enddate}}">
       </div>
+
       <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" id="address" name="address" ng-model="group.address" placeholder="What does the new flavor look like?" class="form-control" value="{{group.address}}">
+        <input type="text" id="address" name="address" ng-model="group.address" class="form-control" value="{{group.address}}">
       </div>
+
       <input type="submit" class="btn btn-primary pull-right" value="Edit!">
-    </form>
-  </div>
-</div> 
+    </form> -->

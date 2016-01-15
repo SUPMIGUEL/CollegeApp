@@ -6,9 +6,11 @@
 <div class="row">
   <div class="col-md-4">
                 
-  </div>
+  </div> 
   <div class="col-md-4" id="login_box">
-    <div ng-show="errors"> {{errors}} </div>
+    <div id="alert" ng-show="errors">
+      <p>Please enter a correct username and password.</p>
+    </div>
     <form name="userForm" ng-submit="login(user)" novalidate class="form-horizontal">
 
       <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine || userForm.username.$invalid && userForm.username.$touched,'has-success' : userForm.username.$valid }">
@@ -33,7 +35,7 @@
         </div>
       </div> 
       
-      <button type="submit" class="btn btn-success btn-lg" ng-disabled="userForm.$invalid">Log In</button>
+      <button type="submit" class="btn btn-default btn-lg" id="access" ng-disabled="userForm.$invalid"><span class="glyphicon glyphicon-ok"></span> Log In</button>
 
     </form><br>
     <h5>Don't have an account? <a href="/signup">Sign Up here</a></h5>

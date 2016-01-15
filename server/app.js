@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/users/', apiRouter.users);
 app.use('/api/groups/', apiRouter.groups);
 app.use('/api/comments/', apiRouter.comments);
+app.use('/api/homeworks/', apiRouter.homeworks);
+app.use('/api/notes/', apiRouter.notes);
+app.use('/api/projects/', apiRouter.projects);
 
 app.get('*', function(req,res){
   res.sendFile(path.join(__dirname, '../client', 'index.html'));

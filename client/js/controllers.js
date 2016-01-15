@@ -2,7 +2,23 @@ app.controller("NavController", [ '$scope', '$window', '$rootScope', function($s
   $rootScope.currentUser = JSON.parse($window.localStorage.getItem("user"));
 }]);
 
-app.controller("SignupController", function($scope, UserService, $location){
+app.controller("SignupController", function($scope, UserService, $location, $rootScope){
+  $rootScope.url ="";
+  $scope.add = function(){
+    uploadcare.openDialog(null, {
+      crop: "disabled",
+      previewStep: true,
+      imagesOnly: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        $rootScope.url = fileInfo.cdnUrl;
+        $scope.$apply();
+      });
+    });
+  }; 
+
+  
+
   $scope.signup = function(user){
     UserService.signup(user).then(function(data){
       UserService.setCurrentUser(data);
@@ -50,6 +66,21 @@ app.controller("UserController", function($scope, user, UserService, $routeParam
 });
 
 app.controller("EditController", function($scope, $location, UserService, user, $window, $rootScope){
+  $scope.btnshow=true;
+  $scope.add = function(){
+    uploadcare.openDialog(null, {
+      crop: "disabled",
+      previewStep: true,
+      imagesOnly: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        $rootScope.url = fileInfo.cdnUrl;
+        $scope.btnshow=false;
+        $scope.$apply();
+      });
+    });
+  }; 
+
   $scope.user = user.data;
   $scope.editUser = function(user){
     UserService.editUser(user).then(function(data){
@@ -59,15 +90,6 @@ app.controller("EditController", function($scope, $location, UserService, user, 
       $scope.errors = "Looks like someone already has that username!";
     });
   };
-
-  /*$scope.removeUser = function(user){
-    UserService.removeUser(user).then(function(data){
-      UserService.logout();
-      $location.path('/');
-    }).catch(function(err){
-      $scope.errors = err;
-    });
-  };*/
 });
 
 app.controller("UsersController", function($scope,currentUser,users){
@@ -123,6 +145,7 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
       $location.path('/');
     });
   };
+
   $scope.deleteComment = function(comment){
     if (confirm('Are you sure you want to delete this comment?')) {
       GroupService.deleteComment(comment._id).then(function(comment){
@@ -133,6 +156,67 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
       });
     }
   };
+
+  $scope.createHomework = function(homework){
+    GroupService.createHomework(homework).then(function(){
+      $scope.homework.content="";
+      $scope.hwdisplay=false;
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
+  $scope.deleteHomework = function(homework){
+    GroupService.deleteHomework(homework).then(function(){
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
+  $scope.createNote = function(note){
+    GroupService.createNote(note).then(function(){
+      $scope.note.content="";
+      $scope.notedisplay=false;
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
+  $scope.deleteNote = function(note){
+    GroupService.deleteNote(note).then(function(){
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
+  $scope.createProject = function(project){
+    GroupService.createProject(project).then(function(){
+      $scope.project.content="";
+      $scope.pjdisplay=false;
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
+  $scope.deleteProject = function(project){
+    GroupService.deleteProject(project).then(function(){
+      $scope.update();
+      $location.path('/groups/'+$routeParams.id);
+    }).catch(function(err){
+      $location.path('/');
+    });
+  };
+
   $scope.update = function(){
     GroupService.getGroup($routeParams.id).then(function(res){
       $scope.display=false;
@@ -144,11 +228,11 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
 }]);
 
 app.controller("EditGroupController", ['$scope', '$location', '$routeParams', 'GroupService', function($scope, $location, $routeParams, GroupService){
-  GroupService.getGroup($routeParams.id).then(function(group){
-    $scope.group = group.data;
+  GroupService.getGroup($routeParams.id).then(function(res){
+    $scope.group = res.data.group;
   }).catch(function(err){
     $location.path('/');
-  });
+  }); 
   $scope.editGroup = function(group){
     GroupService.editGroup(group._id, group).then(function(){
       $location.path('/');
