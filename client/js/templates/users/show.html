@@ -2,7 +2,7 @@
   <h1 class="text-center">
     User Profile
   </h1> 
-</div>
+</div> 
 <div class="row">
   <div class="col-md-1">
     
@@ -35,6 +35,15 @@
           <dd>{{user.phone}}</dd>
         </dl>
         <h3>Groups</h3>
+        <div ng-repeat="group in user.groups" class="row">
+          <div class="col-md-2">
+            <img ng-src="{{group.imageUrl}}"><br><br>
+          </div>
+          <div class="col-md-10">
+            <p>{{group.name}}</p>
+            <a class="btn btn-default" id="orange" href="/groups/{{group._id}}">More Info</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -58,7 +58,10 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="imageUrl">Image Group:</label>
             <div class="col-sm-10">
-              <input type="text" name="imageUrl" class="form-control" ng-model="group.imageUrl" id="imageUrl">
+              <a class="btn btn-default" ng-click="add()" ng-show="btnshow">Change Photo</a>
+              <span class="btn btn-default glyphicon glyphicon-ok" ng-disabled="true" id="access" ng-hide="btnshow"></span>
+              <input type="hidden" name="imageUrl" class="form-control" id="imageUrl" ng-value="group.imageUrl=url">
+
             </div>
         </div>
 

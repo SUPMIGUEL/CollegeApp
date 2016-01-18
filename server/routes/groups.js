@@ -34,7 +34,14 @@ apiRouter.post('/', auth.checkToken, function(req,res){
     if (group && !group.imageUrl) {
       group.imageUrl = "http://www.fancyicons.com/free-icons/103/pretty-office-5/png/256/billboard_256.png";
     }
-    group.owner = req.decoded_id;
+
+    db.User.findById(req.decoded_id, function(error,user){
+      if (error) return res.json({message: "Sorry, there was an error finding that user!", error: error});
+      user.groups.push(group);
+      user.save();
+    });
+
+    group.owner = req.decoded_id; 
     group.save();
     res.json({ message: 'Group created!' });
   });

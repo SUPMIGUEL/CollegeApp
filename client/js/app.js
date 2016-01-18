@@ -62,16 +62,21 @@ app.config(function($routeProvider, $locationProvider, $httpProvider){
     controller: "NewGroupController",
     templateUrl: "templates/groups/new.html",
     restricted: true
-  }).when('/groups/:id', {
+  })
+  .when('/groups/:id', {
     controller: "GroupController",
     templateUrl: "templates/groups/show.html",
-  }).when('/groups/:id/edit', {
+  })
+  .when('/groups/:id/edit', {
     controller: "EditGroupController",
     templateUrl: "templates/groups/edit.html",
     restricted: true
   })
+  .when('/', {
+    templateUrl: "templates/statics/home.html",
+  })
   .otherwise({
-    redirectTo:'/groups'
+    redirectTo:'/'
   });
   $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push("AuthInterceptor");

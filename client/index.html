@@ -11,28 +11,32 @@
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <nav class="navbar navbar-default" ng-controller="NavController">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="/" class="navbar-brand">College App</a>
+      <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-education"></span> College App</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li id="new">
-        <a href="/groups/new">+ New Group</a>
+        <a href="/groups/new"><span class="glyphicon glyphicon-blackboard"></span> New Group</a>
+      </li>
+      <li id="groups">
+        <a href="/groups"><span class="fa fa-users"></span> Groups</a>
       </li>
       <li ng-show="currentUser.username" id="logout">
-        <a href="/logout">Logout</a>
+        <a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
       </li>
       <li ng-show="currentUser.username" id="my_profile">
-        <a href="/users/{{currentUser.id}}">My profile</a>
+        <a href="/users/{{currentUser.id}}"><span class="fa fa-user"></span> My profile</a>
       </li>
       <li ng-show="!currentUser.username">
-        <a href="/login">Login</a>
+        <a href="/login"><span class="fa fa-sign-in"></span> Login</a>
       </li>
       <li ng-show="!currentUser.username" id="register">
-        <a href="/signup">Register</a>
+        <a href="/signup"><span class="fa fa-user-plus"></span> Register</a>
       </li>
     </ul>
   </div>
@@ -45,7 +49,7 @@
   </div>
 
   <footer class="text-center">
-    <p class="text-muted">©Miguel A. González Copyright 2016. All rights reserved</p>
+    <p>©Miguel A. González Copyright 2016. All rights reserved</p>
   </footer>
   
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

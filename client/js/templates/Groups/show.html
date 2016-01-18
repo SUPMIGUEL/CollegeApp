@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-md-1">
     
-  </div>
+  </div> 
   <div class="col-md-10" id="box_group">
     <div class="row">
       <div class="col-md-2 text-center">
@@ -33,16 +33,16 @@
       <div class="col-md-2 text-center">
         <img src="{{res.group.owner.imageUrl}}" id="profile_picture">
         <h3>{{res.group.owner.username}}</h3>
-        <div ng-show="currentUser.username === res.group.owner.username">
+        <div ng-show="currentUser.id === res.group.owner._id">
           <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-default btn-block" id="orange"><span class="glyphicon glyphicon-pencil"></span> Edit Group</a>
           
           <button class="btn btn-default btn-block" id="red" ng-click="deleteGroup(res.group)"><span class="glyphicon glyphicon-trash"></span> Delete Group</button>
           
-          <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Homework</button>
+          <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Homework <span class="fa fa-paperclip"></span></button>
           
-          <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Note</button>
+          <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Note <span class="glyphicon glyphicon-bullhorn"></span></button>
 
-          <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> New Project</button>
+          <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Project <span class="fa fa-bar-chart"></span></button>
 
           <br>
         </div>
@@ -117,12 +117,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th>Homeworks</th>
+              <th><span class="fa fa-book"></span> Homeworks</th>
             </tr>
             <tr ng-repeat="homework in res.homeworks">
               <td>
-                - {{homework.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-paperclip"></span> {{homework.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>
           </table>
@@ -130,12 +130,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th>Notes</th>
+              <th><span class="glyphicon glyphicon-bullhorn"></span> Notes</th>
             </tr>
             <tr ng-repeat="note in res.notes">
               <td>
-                - {{note.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-bolt"></span> {{note.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>
           </table>  
@@ -143,12 +143,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th>Projects</th>
+              <th><span class="fa fa-bar-chart"></span> Projects</th>
             </tr>
             <tr ng-repeat="project in res.projects">
               <td>
-                - {{project.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.username === res.group.owner.username"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-flag"></span> {{project.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
               </td>
             </tr>
           </table>  
@@ -165,23 +165,25 @@
     
   </div>
   <div class="col-md-10" id="box_group">
-    <h2 class="text-center">Classroom Board</h2>
+    <h2 class="text-center"><span class="fa fa-comments-o"></span> Classroom Board</h2>
 
     <div class="row">
       <div class="col-md-12">
           <dl class="dl-horizontal">
             <span ng-repeat="comment in res.comments">
-              <dt><a ng-href="/users/{{comment.user._id}}">{{comment.user.username}}:</a></dt>
+              <dt>
+                <a ng-href="/users/{{comment.user._id}}">{{comment.user.username}} </a><span class="fa fa-comment"></span>
+              </dt>
               <dd>
               {{comment.content}}
-              <button class="btn btn-default btn-xs" id="red" ng-click="deleteComment(comment)" ng-show="currentUser.username === comment.user.username"><span class="glyphicon glyphicon-remove"></span></button>
+              <button class="btn btn-default btn-xs" id="red" ng-click="deleteComment(comment)" ng-show="currentUser.id === comment.user._id"><span class="glyphicon glyphicon-remove"></span></button>
               </dd>
             </span>
           </dl>
       </div>
     </div>
 
-    <button class="btn btn-default" id="access" ng-click="display=!display" ng-show="currentUser && !display"><span class="glyphicon glyphicon-plus"></span> New Comment</button>
+    <button class="btn btn-default" id="access" ng-click="display=!display" ng-show="currentUser && !display"><span class="glyphicon glyphicon-plus"></span> New Comment <span class="fa fa-comment-o"></span></button>
     <a class="btn btn-default pull-left" ng-click="display=!display" id="orange" ng-show="currentUser && display"><span class="glyphicon glyphicon-menu-left"></span>Cancel</a>
     <div class="panel-body" ng-show="display">
       <div class="row">

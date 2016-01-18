@@ -17,8 +17,6 @@ app.controller("SignupController", function($scope, UserService, $location, $roo
     });
   }; 
 
-  
-
   $scope.signup = function(user){
     UserService.signup(user).then(function(data){
       UserService.setCurrentUser(data);
@@ -106,7 +104,21 @@ app.controller("GroupsController", ['$scope', '$location', 'GroupService', '$win
   });
 }]);
 
-app.controller("NewGroupController", ['$scope', '$location', 'GroupService', function($scope, $location, GroupService){
+app.controller("NewGroupController", ['$scope', '$location', 'GroupService', '$rootScope', function($scope, $location, GroupService, $rootScope){
+  $rootScope.url ="";
+  $scope.add = function(){
+    uploadcare.openDialog(null, {
+      crop: "disabled",
+      previewStep: true,
+      imagesOnly: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        $rootScope.url = fileInfo.cdnUrl;
+        $scope.$apply();
+      });
+    });
+  }; 
+
   $scope.createGroup = function(group){
     GroupService.createGroup(group).then(function(){
       $location.path('/');
@@ -233,7 +245,22 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
   };
 }]);
 
-app.controller("EditGroupController", ['$scope', '$location', '$routeParams', 'GroupService', function($scope, $location, $routeParams, GroupService){
+app.controller("EditGroupController", ['$scope', '$location', '$routeParams', 'GroupService', '$rootScope', function($scope, $location, $routeParams, GroupService, $rootScope){
+  $scope.btnshow=true;
+  $scope.add = function(){
+    uploadcare.openDialog(null, {
+      crop: "disabled",
+      previewStep: true,
+      imagesOnly: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        $rootScope.url = fileInfo.cdnUrl;
+        $scope.btnshow=false;
+        $scope.$apply();
+      });
+    });
+  }; 
+
   GroupService.getGroup($routeParams.id).then(function(res){
     $scope.group = res.data.group;
   }).catch(function(err){

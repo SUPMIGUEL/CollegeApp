@@ -38,10 +38,12 @@ apiRouter.get('/', auth.checkToken, function(req,res){
   });
 });
 
+
+
 apiRouter.get('/:id', auth.checkToken, function(req,res){
-  db.User.findById(req.params.id, function(err,user){
+  db.User.findById(req.params.id).populate("groups").exec(function(err,user){
     if (err) res.status(500).send(err);
-    if (!user) res.status(401).send(err);
+    if (!user) res.status(401).send(err); 
     /*var listedItems = {id: user._id, username: user.username};*/
     res.status(200).send(user);
   });

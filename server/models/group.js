@@ -3,6 +3,8 @@ var User = require("./user");
 var Group = require("./group");
 var Comment = require("./comment");
 var Homework = require("./homework");
+var Note = require("./note");
+var Project = require("./project");
 
 var Projects = new mongoose.Schema({ project: String });
 var Notes = new mongoose.Schema({ note: String });
@@ -60,9 +62,5 @@ groupSchema.pre('remove', function(next) {
     next();
 });
 
-var Group = mongoose.model("group", groupSchema);
+var Group = mongoose.model("Group", groupSchema);
 module.exports = Group;
-
-/*name, description, type, imageUrl, startdate, 
-endDate, address, locationDetails, rules
-comments, homeworks, projects, notes*/

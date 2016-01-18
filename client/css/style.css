@@ -1,3 +1,6 @@
+.navbar{
+  background-color: #e6e6e6;
+}
 img{
   width: 100px;
   height: 100px;
@@ -11,7 +14,8 @@ body{
     color: black;
     margin-bottom: 10px;
     text-align:center;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    border-radius: 15px 0px 0px 50px;
 }
 .logos{
     border-radius: 30px;
@@ -20,19 +24,30 @@ body{
     width: 90px;
 }
 .mini_picture{
-    border-radius: 15px;
-    margin: 10px 10px 10px 10px;
-    height: 90px;
-    width: 90px;
+  border-radius: 50px;
+  margin: 10px 10px 10px 10px;
+  height: 70px;
+  width: 70px;
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1000ms ease;
 }
-.name{
-  border-bottom: thin solid gray;
+.mini_picture:hover{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1000ms ease;
+  opacity: 0.6;
 }
 #login_box{
-  border-radius: 15px;
-  text-align: center;
-  border-style: solid;
+  /*border-radius: 15px;
   border-color: #B8B8B8;
+  border-style: solid;*/
+  background-color: #f2f2f2;
+  text-align: center;
   padding: 30px;
 }
 h1{
@@ -43,24 +58,25 @@ footer{
   margin-top: 10px;
 }
 .box{
+  /*border-radius: 15px;
+  border-style: solid;
+  border-color: #B8B8B8;*/
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 30px;
+}
+/*.box{
   border-radius: 15px;
   text-align: center;
   border-style: solid;
   border-color: #B8B8B8;
   padding: 30px;
-}
-.box{
-  border-radius: 15px;
-  text-align: center;
-  border-style: solid;
-  border-color: #B8B8B8;
-  padding: 30px;
-}
+}*/
 #box_profile{
   /*border-radius: 15px;
   border-style: solid;
   border-color: #B8B8B8;*/
-  background-color: #e6e6e6;
+  background-color: #f2f2f2;
   text-align: left;
   padding: 30px;
 }
@@ -68,7 +84,7 @@ footer{
 /*  border-radius: 15px;
   border-style: solid;
   border-color: #B8B8B8;*/
-  background-color: #e6e6e6;
+  background-color: #f2f2f2;
   text-align: left;
   padding: 25px;
   margin-bottom: 15px;
@@ -89,7 +105,7 @@ table{
 }
 th{
   text-align: center;
-  background-color: gray;
+  background-color: #99c2ff;
 }
 li{
   -webkit-transition: all 1000ms ease;
@@ -121,6 +137,9 @@ li:hover{
 #logout:hover{
   background-color:  #ff4d4d;
 }
+#groups:hover{
+  background-color:  #ffff80;
+}
 #new:hover{
   background-color:  #99ffbb;
 }
@@ -151,4 +170,16 @@ li:hover{
 #alert{
   text-align: center;
   background-color: #ffbf80;
+}
+#facebook{
+  background-color: #3b5998;
+  color: white;
+  font-weight: bold;
+}
+#facebook:hover{
+  background-color: #8b9dc3;
+}
+#group_header{
+  background-color: #cccccc;
+  border-radius: 15px 0px 0px 15px;
 }
