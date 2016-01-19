@@ -32,7 +32,7 @@ apiRouter.post('/', auth.checkToken, function(req,res){
   db.Group.create(req.body,function(error, group){
     if (error) return res.status(400).send(error);
     if (group && !group.imageUrl) {
-      group.imageUrl = "http://www.fancyicons.com/free-icons/103/pretty-office-5/png/256/billboard_256.png";
+      group.imageUrl = "https://ucarecdn.com/d380ea71-23cd-4a29-845d-a5a3e7cef1b9/20160119133234.jpg";
     }
 
     db.User.findById(req.decoded_id, function(error,user){
@@ -51,7 +51,7 @@ apiRouter.put('/:groupId', auth.checkToken, routeMiddleware.ensureCorrectUserFor
   db.Group.findByIdAndUpdate(req.params.groupId, req.body, function(error,group){
     if (error) return res.json({message: "Sorry, there was an error!", error: error});
     if (group && !group.imageUrl) {
-      group.imageUrl = "http://www.fancyicons.com/free-icons/103/pretty-office-5/png/256/billboard_256.png";
+      group.imageUrl = "https://ucarecdn.com/d380ea71-23cd-4a29-845d-a5a3e7cef1b9/20160119133234.jpg";
       group.save();
     }
     res.json({ message: 'Group updated!' });

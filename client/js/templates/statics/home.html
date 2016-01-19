@@ -1,1 +1,39 @@
-Hello
+<div class="row">
+  <div class="col-md-1">
+    
+  </div>
+  <div class="col-md-10">
+    <div class="row" id="slides_control">
+        <div>
+          <carousel interval="myInterval">
+            <slide ng-repeat="slide in slides" active="slide.active" id="slide">
+              <img ng-src="{{slide.image}}">
+              <div class="carousel-caption">
+              </div>
+            </slide>
+          </carousel>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 text-center" id="home_container">
+        <img src="https://ucarecdn.com/502b2dcd-a86d-4ecb-aa67-af3d98c32bfb/students.jpg" class="home_picture">
+        <h5>Students</h5>
+      </div>
+      <div class="col-md-3 text-center" id="home_container">
+        <img src="https://ucarecdn.com/269b8169-a333-4715-b3bf-a9b3575e121b/teacher.jpg" class="home_picture">
+        <h5>Teachers</h5>
+      </div>
+      <div class="col-md-3 text-center" id="home_container">
+        <img src="https://ucarecdn.com/d2610ec0-3dd6-4104-9939-36f3e741ae71/group.jpg" class="home_picture">
+        <h5>Study Groups</h5>
+      </div>
+      <div class="col-md-3 text-center" id="home_container">
+        <img src="https://ucarecdn.com/03674147-5a4c-4816-b8d1-2b468ae7b45d/sports.jpg" class="home_picture">
+        <h5>Sports Teams</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1">
+    
+  </div>
+</div>

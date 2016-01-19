@@ -17,7 +17,7 @@
 
         <label class="col-sm-2 control-label" for="username">Username</label>
         <div class="col-sm-10">
-        <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username">
+        <input type="text" name="username" class="form-control" ng-model="user.username" ng-required="true" id="username" autofocus>
         </div>
         <div class="help-block" ng-messages="userForm.username.$error" ng-if="!userForm.username.$pristine || userForm.username.$touched">
           <p ng-message="required">Your username is required.</p>

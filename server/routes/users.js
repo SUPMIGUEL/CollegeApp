@@ -11,7 +11,7 @@ apiRouter.post('/signup',function(req,res){
   db.User.create(req.body, function(err,user){
     if(err) return res.status(400).send(err);
     if (user && !user.imageUrl) {
-      user.imageUrl = "http://www.themiceworld.com/images/user-unknown-icon.jpg";
+      user.imageUrl = "https://ucarecdn.com/85841e9d-e4b7-4b26-80c0-093d48afd900/20160119131731.jpg";
       user.save();
     }
     var listedItems = {id: user._id, username: user.username};
@@ -54,7 +54,7 @@ apiRouter.put('/:id', auth.checkToken, function(req,res){
    if (err) res.status(400).send(err);
    else { //MAYBE NOT NEEDED?
     if (user && !user.imageUrl) {
-      user.imageUrl = "http://www.themiceworld.com/images/user-unknown-icon.jpg";
+      user.imageUrl = "https://ucarecdn.com/85841e9d-e4b7-4b26-80c0-093d48afd900/20160119131731.jpg";
       user.save();
     }
     var listedItems = {id: user._id, username: user.username};

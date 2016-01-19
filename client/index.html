@@ -2,8 +2,10 @@
 <html ng-app="collegeApp" ng-cloak>
 <head>
   <meta charset="UTF-8">
-  <title>College App</title>
+  <title>Web College</title>
   <base href="/">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
   <style>
     [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
       display: none !important;
@@ -17,7 +19,7 @@
 <nav class="navbar navbar-default" ng-controller="NavController">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-education"></span> College App</a>
+      <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-education"></span> Web College</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li id="new">
@@ -42,15 +44,59 @@
   </div>
 </nav>
 <body>
-  <div class="container-fluid">
-    <div ng-view>
-
-    </div>
+  
+  <!-- <div class="container-fluid">
+    <div ng-view></div>
   </div>
 
-  <footer class="text-center">
+  <footer>
     <p>©Miguel A. González Copyright 2016. All rights reserved</p>
-  </footer>
+  </footer> -->
+
+  <div class="container-fluid">
+      <div ng-view></div>
+  </div>
+
+  <div class="footer">
+    <div class="container-fluid">
+      <div class="row" id="footer_row">
+        <div class="col-md-1">
+          
+        </div>
+        <div class="col-md-5 text-right">
+          <strong>Capstone project</strong><br>
+          Galvanize <br>
+          G14 - San Francisco 
+        </div>
+        <div class="col-md-5 text-left" id="footer_line">
+          <strong>Miguel Angel González</strong><br>
+          Full Stack Web Developer <br>
+          <a href="https://mx.linkedin.com/in/supmiguel" target="_blank">
+            <i class="fa fa-linkedin-square fa-2x sm"></i>
+          </a>
+          <a href="https://github.com/SUPMIGUEL" target="_blank">
+            <i class="fa fa-github fa-2x sm"></i>
+          </a>
+<!--           <a href="http://www.medium.com/@supmiguel" target="_blank">
+            <i class="fa fa-medium fa-2x sm"></i>
+          </a>
+          <a href="http://www.twitter.com/supmiguel" target="_blank">
+            <i class="fa fa-twitter fa-2x sm"></i>
+          </a>
+          <a href="http://www.instagram.com/supmiguel" target="_blank">
+            <i class="fa fa-instagram fa-2x sm"></i>
+          </a> -->
+          <a href="mailto:supmiguel3@gmail.com?" target="_blank">
+            <i class="fa fa-envelope fa-2x sm"></i>
+          </a>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <p class="text-muted">©Miguel Angel González Copyright 2016. All rights reserved</p>
+    </div>
+  </div>
   
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -68,6 +114,7 @@
         UPLOADCARE_PUBLIC_KEY = "888c91dd982c2202e5bb";
     </script>
     <script charset="utf-8" src="//ucarecdn.com/widget/2.6.0/uploadcare/uploadcare.full.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 </body>
 </html>
 

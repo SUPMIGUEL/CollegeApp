@@ -10,39 +10,29 @@
   <div class="col-md-10" id="box_group">
     <div class="row">
       <div class="col-md-2 text-center">
-        <img src="{{res.group.imageUrl}}" id="group_picture">
-        <h3>{{res.group.type}}</h3>
-      </div>
-      <div class="col-md-8">
-        <h2 class="text-center">{{res.group.name}}</h2>
-        <dl class="dl-horizontal">
-          <dt>About:</dt>
-          <dd>{{res.group.description}}</dd>
-          <dt>Stars:</dt>
-          <dd>{{res.group.startDate}}</dd>
-          <dt>Ends:</dt>
-          <dd>{{res.group.endDate}}</dd>
-          <dt>Address:</dt>
-          <dd>{{res.group.address}}</dd>
-          <dt>Location Details:</dt>
-          <dd>{{res.group.locationDetails}}</dd>
-          <dt>Rules:</dt>
-          <dd>{{res.group.rules}}</dd>
-        </dl>
-      </div>
-      <div class="col-md-2 text-center">
-        <img src="{{res.group.owner.imageUrl}}" id="profile_picture">
-        <h3>{{res.group.owner.username}}</h3>
-        <div ng-show="currentUser.id === res.group.owner._id">
-          <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-default btn-block" id="orange"><span class="glyphicon glyphicon-pencil"></span> Edit Group</a>
-          
-          <button class="btn btn-default btn-block" id="red" ng-click="deleteGroup(res.group)"><span class="glyphicon glyphicon-trash"></span> Delete Group</button>
-          
+        <img src="{{res.group.imageUrl}}" id="group_picture"> <br>
+        <strong>Stars: </strong>{{res.group.startDate}} <br>
+        <strong>Ends: </strong>{{res.group.endDate}} <br>
           <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Homework <span class="fa fa-paperclip"></span></button>
           
           <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Note <span class="glyphicon glyphicon-bullhorn"></span></button>
 
           <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Project <span class="fa fa-bar-chart"></span></button>
+      </div>
+      <div class="col-md-8">
+        <h3 class="text-center">{{res.group.type}}: {{res.group.name}}</h3>
+        <p>{{res.group.description}}</p>
+        <strong>Address:</strong> {{res.group.address}}
+        <strong>Location Details:</strong> {{res.group.locationDetails}} <br>
+        <strong>Rules:</strong> {{res.group.rules}}
+      </div> 
+      <div class="col-md-2 text-center">
+        <img src="{{res.group.owner.imageUrl}}" id="profile_picture">
+        <h5><span class="fa fa-user"></span> {{res.group.owner.username}}</h5>
+        <div ng-show="currentUser.id === res.group.owner._id">
+          <a ng-href="/groups/{{res.group._id}}/edit" class="btn btn-default btn-block" id="orange"><span class="glyphicon glyphicon-pencil"></span> Edit Group</a>
+          
+          <button class="btn btn-default btn-block" id="red" ng-click="deleteGroup(res.group)"><span class="glyphicon glyphicon-trash"></span> Delete Group</button>
 
           <br>
         </div>
@@ -117,12 +107,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th><span class="fa fa-book"></span> Homeworks</th>
+              <th><h5><span class="fa fa-book"></span> Homeworks</h5></th>
             </tr>
             <tr ng-repeat="homework in res.homeworks">
               <td>
-                <span class="fa fa-paperclip"></span> {{homework.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-paperclip"> {{homework.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
             </tr>
           </table>
@@ -130,12 +120,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th><span class="glyphicon glyphicon-bullhorn"></span> Notes</th>
+              <th><h5><span class="glyphicon glyphicon-bullhorn"></span> Notes</h5></th>
             </tr>
             <tr ng-repeat="note in res.notes">
               <td>
-                <span class="fa fa-bolt"></span> {{note.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-bolt"> {{note.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
             </tr>
           </table>  
@@ -143,12 +133,12 @@
         <div class="col-md-4">
           <table>
             <tr>
-              <th><span class="fa fa-bar-chart"></span> Projects</th>
+              <th><h5><span class="fa fa-bar-chart"></span> Projects</h5></th>
             </tr>
             <tr ng-repeat="project in res.projects">
               <td>
-                <span class="fa fa-flag"></span> {{project.content}}
-                <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button>
+                <span class="fa fa-flag"> {{project.content}}
+                <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
             </tr>
           </table>  

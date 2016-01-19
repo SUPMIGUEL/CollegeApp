@@ -2,6 +2,22 @@ app.controller("NavController", [ '$scope', '$window', '$rootScope', function($s
   $rootScope.currentUser = JSON.parse($window.localStorage.getItem("user"));
 }]);
 
+app.controller("HomeController", function($scope, $location){
+  console.log("hello");
+    $scope.myInterval = 2500;
+    $scope.slides = [
+      {
+        image: 'https://ucarecdn.com/756fb26c-5fb4-408c-a905-0f1d2abf138a/webcollege.png'
+      },
+      {
+        image: 'https://ucarecdn.com/990a5063-aab5-4602-8ca2-2dcf06d527b1/note.jpg'
+      },
+      {
+        image: 'https://ucarecdn.com/ef648f6b-935d-4aef-a0ed-d5223cac4483/SLIDE3.jpg'
+      }
+    ];
+});
+
 app.controller("SignupController", function($scope, UserService, $location, $rootScope){
   $rootScope.url ="";
   $scope.add = function(){

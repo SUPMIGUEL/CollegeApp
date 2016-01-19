@@ -1,4 +1,4 @@
-var app = angular.module("collegeApp", ['ngRoute', 'ngMessages']);
+var app = angular.module("collegeApp", ['ngRoute', 'ngMessages','ui.bootstrap']);
 
 app.config(function($routeProvider, $locationProvider, $httpProvider){
   $routeProvider
@@ -66,6 +66,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider){
   .when('/groups/:id', {
     controller: "GroupController",
     templateUrl: "templates/groups/show.html",
+    restricted: true
   })
   .when('/groups/:id/edit', {
     controller: "EditGroupController",
@@ -73,6 +74,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider){
     restricted: true
   })
   .when('/', {
+    controller: "HomeController",
     templateUrl: "templates/statics/home.html",
   })
   .otherwise({
