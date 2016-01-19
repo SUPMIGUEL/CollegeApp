@@ -13,11 +13,13 @@
         <img src="{{res.group.imageUrl}}" id="group_picture"> <br>
         <strong>Stars: </strong>{{res.group.startDate}} <br>
         <strong>Ends: </strong>{{res.group.endDate}} <br>
+        <div ng-show="currentUser.id === res.group.owner._id">
           <button class="btn btn-default btn-block" id="access" ng-click="hwdisplay=!hwdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Homework <span class="fa fa-paperclip"></span></button>
           
           <button class="btn btn-default btn-block" id="access" ng-click="notedisplay=!notedisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Note <span class="glyphicon glyphicon-bullhorn"></span></button>
 
           <button class="btn btn-default btn-block" id="access" ng-click="pjdisplay=!pjdisplay" ng-show="currentUser"><span class="glyphicon glyphicon-plus"></span> Project <span class="fa fa-bar-chart"></span></button>
+        </div>
       </div>
       <div class="col-md-8">
         <h3 class="text-center">{{res.group.type}}: {{res.group.name}}</h3>

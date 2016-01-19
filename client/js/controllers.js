@@ -263,6 +263,14 @@ app.controller("GroupController", ['$scope', '$location', '$routeParams', 'Group
 
 app.controller("EditGroupController", ['$scope', '$location', '$routeParams', 'GroupService', '$rootScope', function($scope, $location, $routeParams, GroupService, $rootScope){
   $scope.btnshow=true;
+
+  GroupService.getGroup($routeParams.id).then(function(res){
+    $scope.group = res.data.group;
+    $rootScope.url = $scope.group.imageUrl;
+  }).catch(function(err){
+    $location.path('/');
+  }); 
+
   $scope.add = function(){
     uploadcare.openDialog(null, {
       crop: "disabled",
@@ -277,11 +285,6 @@ app.controller("EditGroupController", ['$scope', '$location', '$routeParams', 'G
     });
   }; 
 
-  GroupService.getGroup($routeParams.id).then(function(res){
-    $scope.group = res.data.group;
-  }).catch(function(err){
-    $location.path('/');
-  }); 
   $scope.editGroup = function(group){
     GroupService.editGroup(group._id, group).then(function(){
       $location.path('/');
