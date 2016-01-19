@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/college_app");
+mongoose.connect( process.env.MONGOLAB_URI || "mongodb://localhost/college_app");
 
 mongoose.set("debug", true);
 
