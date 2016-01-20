@@ -112,7 +112,7 @@
               <th><h5><span class="fa fa-book"></span> Homeworks</h5></th>
             </tr>
             <tr ng-repeat="homework in res.homeworks">
-              <td>
+              <td class="wrapword">
                 <span class="fa fa-paperclip"> {{homework.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteHomework(homework)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
@@ -125,7 +125,7 @@
               <th><h5><span class="glyphicon glyphicon-bullhorn"></span> Notes</h5></th>
             </tr>
             <tr ng-repeat="note in res.notes">
-              <td>
+              <td class="wrapword">
                 <span class="fa fa-bolt"> {{note.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteNote(note)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
@@ -138,7 +138,7 @@
               <th><h5><span class="fa fa-bar-chart"></span> Projects</h5></th>
             </tr>
             <tr ng-repeat="project in res.projects">
-              <td>
+              <td class="wrapword">
                 <span class="fa fa-flag"> {{project.content}}
                 <button class="btn btn-default btn-xs" id="red" ng-click="deleteProject(project)" ng-show="currentUser.id === res.group.owner._id"><span class="glyphicon glyphicon-remove"></span></button></span>
               </td>
